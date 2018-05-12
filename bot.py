@@ -7,6 +7,7 @@ import random
 from discord import Client
 
 bot = commands.Bot(command_prefix='$')
+dadjokes=["Can february march? No, but april may","I won't buy anything velcro. They are such a rip-off"]
 
 @bot.event
 async def on_ready():
@@ -60,16 +61,17 @@ async def say(ctx,*,args):
 @bot.command(pass_context=True)
 async def math(ctx, arg1, arg2, arg3):
     if arg1=="add" or "+":
-        embed=discord.Embed(description=arg2+arg3,color=0xe198ff)
+        embed=discord.Embed(description=int(arg2+arg3),color=0xe198ff)
+        embed.set_footer("Note that I use a type of notation similar to Polish notation.")
         await bot.say(embed=embed)
     elif arg1=="subtract" or "-":
-        embed=discord.Embed(description=arg2-arg3,color=0xe198ff)
+        embed=discord.Embed(description=int(arg2-arg3),color=0xe198ff)
         await bot.say(embed=embed)
     elif arg1=="multiply" or "*":
-        embed=discord.Embed(description=arg2*arg3,color=0xe198ff)
+        embed=discord.Embed(description=int(arg2*arg3),color=0xe198ff)
         await bot.say(embed=embed)
     elif arg1=="divide" or "/":
-        embed=discord.Embed(description=arg2/arg3,color=0xe198ff)
+        embed=discord.Embed(description=int(arg2/arg3),color=0xe198ff)
     else:
         embed=discord.Embed(description="Sorry, I don't know how to math these two numbers.",color=0xe198ff)
         await bot.say(embed=embed)
@@ -83,10 +85,9 @@ async def invite(ctx):
     await bot.say(embed=embed)
 
 @bot.command(pass_context=True)
-async def createrole(ctx,*,args):
-    author = ctx.message.author
-    await client.create_role(author.server, name=args)
-    embed=discord.Embed(description="Created role **{}**.".format(args))
+async def dadjoke(ctx):
+    embed=discord.Embed(description=str(random.choice(dadjokes)),color=0xe198ff)
+    await bot.say(embed=embed)
 
 
 bot.run(TOKEN)
