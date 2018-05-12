@@ -4,6 +4,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 import asyncio
 import random
+from discord import Client
 
 bot = commands.Bot(command_prefix='$')
 
@@ -52,8 +53,8 @@ async def dice(ctx):
     print("User has requested dice rolling.")
 
 @bot.command(pass_context=True)
-async def say(ctx,arg):
-    embed=discord.Embed(description=arg,color=0xe198ff)
+async def say(ctx,*,args):
+    embed=discord.Embed(description=args,color=0xe198ff)
     await bot.say(embed=embed)
 
 @bot.command(pass_context=True)
@@ -81,4 +82,11 @@ async def invite(ctx):
     embed.add_field(name="Support Server",value="This is the server where you can chat along, recieve support, and support development! :hotsprings:\n https://discord.gg/bA9ry43",inline=True)
     await bot.say(embed=embed)
 
-bot.run("NDQ0NzE4OTI2NDcyMDE5OTY4.DdgAUQ.VROf9wsx9Vg58T7sj384pu7U1P8")
+@bot.command(pass_context=True)
+async def createrole(ctx,*,args):
+    author = ctx.message.author
+    await client.create_role(author.server, name=args)
+    embed=discord.Embed(description="Created role **{}**.".format(args))
+
+
+bot.run(TOKEN)
