@@ -5,7 +5,7 @@ from discord.ext.commands import Bot
 import asyncio
 import random
 from discord import Client
-import redis
+import psycopg2
 import urbandictionary as ud
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
 bot = commands.Bot(command_prefix='$')
