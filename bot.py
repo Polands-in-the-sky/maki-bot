@@ -64,7 +64,6 @@ async def say(ctx,*,args):
 async def math(ctx, arg1, arg2, arg3):
     if arg1=="add" or "+":
         embed=discord.Embed(description=int(arg2+arg3),color=0xe198ff)
-        embed.set_footer("Note that I use a type of notation similar to Polish notation.")
         await bot.say(embed=embed)
     elif arg1=="subtract" or "-":
         embed=discord.Embed(description=int(arg2-arg3),color=0xe198ff)
