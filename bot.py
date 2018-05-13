@@ -5,6 +5,7 @@ from discord.ext.commands import Bot
 import asyncio
 import random
 from discord import Client
+import redis
 
 bot = commands.Bot(command_prefix='$')
 dadjokes=["Can february march? No, but april may","I won't buy anything velcro. They are such a rip-off"]
