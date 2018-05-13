@@ -6,6 +6,7 @@ import asyncio
 import random
 from discord import Client
 import redis
+import urbandictionary as ud
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
 bot = commands.Bot(command_prefix='$')
 dadjokes=["Can february march? No, but april may","I won't buy anything velcro. They are such a rip-off"]
@@ -90,5 +91,10 @@ async def dadjoke(ctx):
     embed=discord.Embed(description=str(random.choice(dadjokes)),color=0xe198ff)
     await bot.say(embed=embed)
 
+@bot.command(pass_context=True)
+async def ud(ctx,*,args):
+    defs = ud.define(args)
+    embed=discord.Embed(title="Definition of {}".format(args),description=str(defs.definition),color=0xe198ff)
+    await bot.say(embed=embed)
 
 bot.run(TOKEN)
