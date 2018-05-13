@@ -6,7 +6,7 @@ import asyncio
 import random
 from discord import Client
 import redis
-
+r = redis.StrictRedis(host='localhost', port=6379, db=0)
 bot = commands.Bot(command_prefix='$')
 dadjokes=["Can february march? No, but april may","I won't buy anything velcro. They are such a rip-off"]
 
