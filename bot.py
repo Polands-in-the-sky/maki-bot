@@ -90,7 +90,7 @@ async def invite(ctx):
 async def dadjoke(ctx):
     embed=discord.Embed(description=str(random.choice(dadjokes)),color=0xe198ff)
     await bot.say(embed=embed)
-
+#needs work
 @bot.command(pass_context=True)
 async def ud(ctx,*,args):
     defs = ud.define(args)
