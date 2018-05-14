@@ -7,7 +7,6 @@ import random
 from discord import Client
 import psycopg2
 import urbandictionary as ud
-r = redis.StrictRedis(host='localhost', port=6379, db=0)
 bot = commands.Bot(command_prefix='$')
 dadjokes=["Can february march? No, but april may","I won't buy anything velcro. They are such a rip-off"]
 
@@ -29,6 +28,7 @@ async def info(ctx, user: discord.Member):
     embed.add_field(name="Status",value="{}".format(user.status),inline=True)
     embed.add_field(name="User's highest role",value="{}".format(user.top_role),inline=True)
     embed.add_field(name="Date of joining the server",value="{}".format(user.joined_at))
+    embed.set_thumbnail(url=user.avatar_url)
     await bot.say(embed=embed)
     print("User has requested the info of {}.".format(user.name))
 
