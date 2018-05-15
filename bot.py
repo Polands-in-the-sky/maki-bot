@@ -99,10 +99,13 @@ async def ud(ctx,*,args):
 @bot.command(pass_context=True)
 async def wikipedia(ctx,*,args):
     await bot.say("http://wikipedia.org/wiki/"+args)
-#hi gabi
-bot.run(TOKEN)
-print('hello')
-#shitholecountry Trumps wise words :)
+
 print("red is lit")
 @bot.command(pass_context=True)
-async def wikipedia (ctx,*)
+async def gabis_command (ctx,*,args):
+    await bot.say("hello my friend")
+#hi gabi
+print('hello')
+#shitholecountry Trumps wise words :)
+
+bot.run(TOKEN)
