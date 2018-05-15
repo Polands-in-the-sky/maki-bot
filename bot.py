@@ -95,7 +95,14 @@ async def ud(ctx,*,args):
     defs = ud.define(args)
     embed=discord.Embed(title="Definition of {}".format(args),description=str(defs.definition),color=0xe198ff)
     await bot.say(embed=embed)
+
+@bot.command(pass_context=True)
+async def wikipedia(ctx,*,args):
+    await bot.say("http://wikipedia.org/wiki/"+args)
 #hi gabi
 bot.run(TOKEN)
 print('hello')
 #shitholecountry Trumps wise words :)
+print("red is lit")
+@bot.command(pass_context=True)
+async def wikipedia (ctx,*)
