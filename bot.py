@@ -98,7 +98,12 @@ async def ud(ctx,*,args):
 
 @bot.command(pass_context=True)
 async def wikipedia(ctx,*,args):
-    await bot.say("http://wikipedia.org/wiki/"+args)
+    if args=="help":
+        embed=discord.Embed(title="the Wikipedia Function",color=0xe198ff)
+        embed=add_field(name="How to wiki",value="Just type the word you want to search after $wikipedia.",inline=True)
+        await bot.say(embed=embed)
+    else:
+        await bot.say("http://wikipedia.org/wiki/"+args.replace(" ","_"))
 
 print("red is lit")
 @bot.command(pass_context=True)
