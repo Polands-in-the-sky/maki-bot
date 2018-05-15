@@ -9,7 +9,7 @@ import psycopg2
 import urbandictionary as ud
 bot = commands.Bot(command_prefix='$')
 dadjokes=["Can february march? No, but april may","I won't buy anything velcro. They are such a rip-off"]
-
+print('Hello')
 @bot.event
 async def on_ready():
     print ("Maki is here.")
@@ -95,5 +95,6 @@ async def ud(ctx,*,args):
     defs = ud.define(args)
     embed=discord.Embed(title="Definition of {}".format(args),description=str(defs.definition),color=0xe198ff)
     await bot.say(embed=embed)
-
+#hi gabi
 bot.run(TOKEN)
+print('hello')
