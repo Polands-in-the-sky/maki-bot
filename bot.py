@@ -105,5 +105,4 @@ async def wikipedia(ctx,*,args):
     else:
         await bot.say("http://wikipedia.org/wiki/"+args.replace(" ","_"))
 
-
 bot.run(TOKEN)
