@@ -105,12 +105,5 @@ async def wikipedia(ctx,*,args):
     else:
         await bot.say("http://wikipedia.org/wiki/"+args.replace(" ","_"))
 
-print("red is lit")
-@bot.command(pass_context=True)
-async def gabis_command (ctx,*,args):
-    await bot.say("hello my friend")
-#hi gabi
-print('hello')
-#shitholecountry Trumps wise words :)
 
 bot.run(TOKEN)
