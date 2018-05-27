@@ -7,7 +7,6 @@ import random
 from discord import Client
 import redis
 r = redis.Redis(host='localhost', port=6379, db=0)
-import urbandictionary as ud
 bot = commands.Bot(command_prefix='$')
 dadjokes=["Can february march? No, but april may","I won't buy anything velcro. They are such a rip-off"]
 print('Hello')
@@ -21,11 +20,6 @@ async def on_ready():
 async def ping(ctx):
     embed=discord.Embed(description="Pong! :ping_pong:",color=0xE19BFF)
     await bot.say(embed=embed)
-
-class client(discord.Client):
-    @asyncio.coroutine
-    async def on_member_join(member):
-        await bot.say("Hello **{}!** Welcome to this server!".format(user.name))
 
 @bot.command(pass_context=True)
 async def info(ctx, user: discord.Member):
