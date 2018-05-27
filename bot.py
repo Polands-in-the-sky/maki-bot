@@ -22,6 +22,11 @@ async def ping(ctx):
     embed=discord.Embed(description="Pong! :ping_pong:",color=0xE19BFF)
     await bot.say(embed=embed)
 
+@Client.event
+@asyncio.coroutine
+async def on_member_join(member):
+    await bot.say("Hello **{}!** Welcome to this server!".format(user.name))
+
 @bot.command(pass_context=True)
 async def info(ctx, user: discord.Member):
     embed = discord.Embed(title="{}\'s info".format(user.display_name),description="Hi",color=0xE19BFF)
