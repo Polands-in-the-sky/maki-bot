@@ -11,6 +11,7 @@ r = redis.Redis(host='localhost', port=6379, db=0)
 bot = commands.Bot(command_prefix='$')
 dadjokes=["Can february march? No, but april may","I won't buy anything velcro. They are such a rip-off"]
 eightball_responses=["Hell yea.","The future is uncertain.","Fuhggetaboutit."]
+polanjokes=["USSR rewrites history. Poland approaches him. He asks USSR if there were mongol invasions. USSR says that there were no such thing. then Poland replied,\"If there was no mongol there will be no Russia!","What is of Germoney's favorite sandwich? Pologna!"]
 
 @bot.event
 async def on_ready():
@@ -108,9 +109,12 @@ async def wikipedia(ctx,*,args):
         await bot.say("http://wikipedia.org/wiki/"+args.replace(" ","_"))
 
 @bot.command(pass_context=True)
-async def linux(ctx,arg1,arg2):
-    embed=discord.Embed(description="I'd just like to interject for a moment. What you're referring to as "+arg2+", is in fact, "+arg1+"/"+arg2+", or as I've recently taken to calling it, "+arg1+" plus "+arg2+". "+arg2+" is not an operating system unto itself, but rather another free component of a fully functioning "+arg1+" system made useful by the "+arg1+" corelibs, shell utilities and vital system components comprising a full OS as defined by POSIX.\nMany computer users run a modified version of the "+arg1+" system every day, without realizing it. Through a peculiar turn of events, the version of "+arg1+" which is widely used today is often called \""+arg2+"\", and many of its users are not aware that it is basically the "+arg1+" system, developed by the "+arg1+" Project. There really is a "+arg2+", and these people are using it, but it is just a part of the system they use. "+arg2+" is the kernel: the program in the system that allocates the machine's resources to the other programs that you run. The kernel is an essential part of an operating system, but useless by itself; it can only function in the context of a complete operating system. "+arg2+" is normally used in combination with the "+arg1+" operating system: the whole system is basically GNU with Linux added, or "+arg1+"/"+arg2+". All the so-called \""+arg2+"\" distributions are really distributions of "+arg1+"/"+arg2+".")
-    await bot.say(embed=embed)
+async def joke(ctx,arg1):
+    if arg1=="polanjoke":
+        embed=discord.Embed(description=random.choice(polanjokes))
+        await bot.say(embed=embed)
+    else:
+        embed=discord.Embed(description="Sorry, no such joke type found.")
 
 @bot.command(pass_context=True)
 async def eightball(ctx):
