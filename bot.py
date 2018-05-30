@@ -117,4 +117,5 @@ async def eightball(ctx):
     embed=discord.Embed(description=str(random.choice(eightball_responses))
     await bot.say(embed=embed)
 
+
 bot.run(TOKEN)
