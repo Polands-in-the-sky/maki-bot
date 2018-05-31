@@ -7,6 +7,7 @@ import random
 from discord import Client
 import redis
 import urbandictionary as ud
+from plugins import *
 r = redis.Redis(host='localhost', port=6379, db=0)
 bot = commands.Bot(command_prefix='$')
 dadjokes=["Can february march? No, but april may","I won't buy anything velcro. They are such a rip-off"]
