@@ -4,21 +4,20 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 import asyncio
 import random
+import webbrowser
 from discord import Client
 import redis
 import urbandictionary as ud
-from plugins import *
+from makibot.plugins import *
 r = redis.Redis(host='localhost', port=6379, db=0)
 bot = commands.Bot(command_prefix='$')
-dadjokes=["Can february march? No, but april may","I won't buy anything velcro. They are such a rip-off"]
-eightball_responses=["Hell yea.","The future is uncertain.","Fuhggetaboutit."]
-polanjokes=["USSR rewrites history. Poland approaches him. He asks USSR if there were mongol invasions. USSR says that there were no such thing. then Poland replied,\"If there was no mongol there will be no Russia!","What is of Germoney's favorite sandwich? Pologna!"]
 
 @bot.event
 async def on_ready():
     print ("Maki is here.")
     print ("I am running on " + bot.user.name)
     print ("With the ID: " + str(bot.user.id))
+    webbrowser.open("yay.html")
 
 @bot.command(pass_context=True)
 async def ping(ctx):
@@ -108,19 +107,6 @@ async def wikipedia(ctx,*,args):
         await bot.say(embed=embed)
     else:
         await bot.say("http://wikipedia.org/wiki/"+args.replace(" ","_"))
-
-@bot.command(pass_context=True)
-async def joke(ctx,arg1):
-    if arg1=="polanjoke":
-        embed=discord.Embed(description=random.choice(polanjokes))
-        await bot.say(embed=embed)
-    else:
-        embed=discord.Embed(description="Sorry, no such joke type found.")
-
-@bot.command(pass_context=True)
-async def eightball(ctx):
-    embed=discord.Embed(description=str(random.choice(eightball_responses))
-    await bot.say(embed=embed)
 
 
 bot.run(TOKEN)
