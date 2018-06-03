@@ -7,11 +7,12 @@ import random
 import webbrowser
 from discord import Client
 import redis
+import json
 import urbandictionary as ud
 from makibot.plugins import *
 r = redis.Redis(host='localhost', port=6379, db=0)
 bot = commands.Bot(command_prefix='$')
-
+strings=json.open("/resources/strings.json")
 @bot.event
 async def on_ready():
     print ("Maki is here.")
@@ -83,7 +84,7 @@ async def math(ctx, arg1, arg2, arg3):
 
 @bot.command(pass_context=True)
 async def invite(ctx):
-    embed=discord.Embed(title="Invite Me",color=0xe198ff)
+    embed=discord.Embed(title="Invite Me",description="Don't be Eesti :flag_ee:, invite me!",color=0xe198ff)
     embed.add_field(name="Invite me to your guild",value="https://discordapp.com/api/oauth2/authorize?client_id=444718926472019968&permissions=0&scope=bot",inline=True)
     embed.add_field(name="Support Server",value="This is the server where you can chat along, recieve support, and support development! :hotsprings:\n https://discord.gg/bA9ry43",inline=True)
     await bot.say(embed=embed)
