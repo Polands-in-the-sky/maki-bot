@@ -13,6 +13,7 @@ from makibot.plugins import *
 r = redis.Redis(host='localhost', port=6379, db=0)
 bot = commands.Bot(command_prefix='$')
 strings=json.open("/resources/strings.json")
+secrets=json.open("/resources/secret.json")
 @bot.event
 async def on_ready():
     print ("Maki is here.")
