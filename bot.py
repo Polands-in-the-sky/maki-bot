@@ -108,5 +108,10 @@ async def wikipedia(ctx,*,args):
     else:
         await bot.say("http://wikipedia.org/wiki/"+args.replace(" ","_"))
 
+@bot.command(pass_context=True)
+async def work():
+    embed=discord.Embed(description="Hmn... your job is:**{}**.".format(random.choice(strings[WorkAdjectives])),color=0xe198ff)
+    await bot.say(embed=embed)
+
 
 bot.run(TOKEN)
