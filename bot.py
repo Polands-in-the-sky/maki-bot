@@ -18,7 +18,6 @@ async def on_ready():
     print ("Maki is here.")
     print ("I am running on " + bot.user.name)
     print ("With the ID: " + str(bot.user.id))
-    webbrowser.open("yay.html")
 
 @bot.command(pass_context=True)
 async def ping(ctx):
