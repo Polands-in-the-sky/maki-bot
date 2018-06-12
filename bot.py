@@ -4,10 +4,16 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 import asyncio
 import random
+import webbrowser
 from discord import Client
-
+import redis
+import json
+import urbandictionary as ud
+from makibot.plugins import *
+r = redis.Redis(host='localhost', port=6379, db=0)
 bot = commands.Bot(command_prefix='$')
-
+strings=json.open("/resources/strings.json")
+secrets=json.open("/resources/secret.json")
 @bot.event
 async def on_ready():
     print ("Maki is here.")
@@ -16,7 +22,7 @@ async def on_ready():
 
 @bot.command(pass_context=True)
 async def ping(ctx):
-    embed=discord.Embed(description="Pong! :ping_pong:",color=0xE19BFF)
+    embed=discord.Embed(description="Bong! :ping_pong:",color=0xE19BFF)
     await bot.say(embed=embed)
 
 @bot.command(pass_context=True)
@@ -26,6 +32,7 @@ async def info(ctx, user: discord.Member):
     embed.add_field(name="Status",value="{}".format(user.status),inline=True)
     embed.add_field(name="User's highest role",value="{}".format(user.top_role),inline=True)
     embed.add_field(name="Date of joining the server",value="{}".format(user.joined_at))
+    embed.set_thumbnail(url=user.avatar_url)
     await bot.say(embed=embed)
     print("User has requested the info of {}.".format(user.name))
 
@@ -60,16 +67,16 @@ async def say(ctx,*,args):
 @bot.command(pass_context=True)
 async def math(ctx, arg1, arg2, arg3):
     if arg1=="add" or "+":
-        embed=discord.Embed(description=arg2+arg3,color=0xe198ff)
+        embed=discord.Embed(description=int(arg2+arg3),color=0xe198ff)
         await bot.say(embed=embed)
     elif arg1=="subtract" or "-":
-        embed=discord.Embed(description=arg2-arg3,color=0xe198ff)
+        embed=discord.Embed(description=int(arg2-arg3),color=0xe198ff)
         await bot.say(embed=embed)
     elif arg1=="multiply" or "*":
-        embed=discord.Embed(description=arg2*arg3,color=0xe198ff)
+        embed=discord.Embed(description=int(arg2*arg3),color=0xe198ff)
         await bot.say(embed=embed)
     elif arg1=="divide" or "/":
-        embed=discord.Embed(description=arg2/arg3,color=0xe198ff)
+        embed=discord.Embed(description=int(arg2/arg3),color=0xe198ff)
     else:
         embed=discord.Embed(description="Sorry, I don't know how to math these two numbers.",color=0xe198ff)
         await bot.say(embed=embed)
@@ -77,16 +84,35 @@ async def math(ctx, arg1, arg2, arg3):
 
 @bot.command(pass_context=True)
 async def invite(ctx):
-    embed=discord.Embed(title="Invite Me",color=0xe198ff)
+    embed=discord.Embed(title="Invite Me",description="Don't be Eesti :flag_ee:, invite me!",color=0xe198ff)
     embed.add_field(name="Invite me to your guild",value="https://discordapp.com/api/oauth2/authorize?client_id=444718926472019968&permissions=0&scope=bot",inline=True)
     embed.add_field(name="Support Server",value="This is the server where you can chat along, recieve support, and support development! :hotsprings:\n https://discord.gg/bA9ry43",inline=True)
     await bot.say(embed=embed)
 
 @bot.command(pass_context=True)
-async def createrole(ctx,*,args):
-    author = ctx.message.author
-    await client.create_role(author.server, name=args)
-    embed=discord.Embed(description="Created role **{}**.".format(args))
+async def dadjoke(ctx):
+    embed=discord.Embed(description=str(random.choice(dadjokes)),color=0xe198ff)
+    await bot.say(embed=embed)
+#needs work
+@bot.command(pass_context=True)
+async def ud(ctx,*,args):
+    defs = ud.define(args)
+    embed=discord.Embed(title="Definition of {}".format(args),description=str(defs.definition),color=0xe198ff)
+    await bot.say(embed=embed)
+
+@bot.command(pass_context=True)
+async def wikipedia(ctx,*,args):
+    if args=="help":
+        embed=discord.Embed(title="the Wikipedia Function",color=0xe198ff)
+        embed=add_field(name="How to wiki",value="Just type the word you want to search after $wikipedia.",inline=True)
+        await bot.say(embed=embed)
+    else:
+        await bot.say("http://wikipedia.org/wiki/"+args.replace(" ","_"))
+
+@bot.command(pass_context=True)
+async def work():
+    embed=discord.Embed(description="Hmn... your job is:**{}**.".format(random.choice(strings[WorkAdjectives])),color=0xe198ff)
+    await bot.say(embed=embed)
 
 
 bot.run(TOKEN)
