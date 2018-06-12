@@ -22,7 +22,7 @@ async def on_ready():
 
 @bot.command(pass_context=True)
 async def ping(ctx):
-    embed=discord.Embed(description="Pong! :ping_pong:",color=0xE19BFF)
+    embed=discord.Embed(description="Bong! :ping_pong:",color=0xE19BFF)
     await bot.say(embed=embed)
 
 @bot.command(pass_context=True)
